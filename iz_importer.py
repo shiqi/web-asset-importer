@@ -455,14 +455,14 @@ class IzImporter(Importer):
         if self.attempt_filename_match(full_path):
             return 'Filename'
 
-        if self.get_casiz_from_exif(exif_metadata) is not None:
-            return 'EXIF'
-
         if self.attempt_directory_match(full_path):
             return 'Directory'
 
+        if self.get_casiz_from_exif(exif_metadata) is not None:
+            return 'EXIF'
+
         self.log_file_status(filename=os.path.basename(full_path), path=full_path,
-                             rejected="no casiz match for exif, filename, or directory.")
+                             rejected="no casiz match for filename, directory, or exif.")
         return None
 
     def _update_metadata_map(self, full_path, exif_metadata, file_key):
